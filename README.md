@@ -44,7 +44,7 @@ Golang的23种设计模式之代码示例+图解+设计模式/原则等资料
 
 ### 创建型模式
 
-* [简单工厂模式（Simple Factory）](./00_simple_factory) 
+* [简单工厂模式（Simple Factory）](./00_simple_factory)
 
   ![image-20210103164219481](./img/简单工厂模式.png)
 

@@ -27,7 +27,8 @@ func TestParallelSingleton(t *testing.T) {
 			//协程阻塞，等待channel被关闭才能继续运行
 			<-start
 			instances[index] = GetInstance()
-			wg.Done() //计数-1
+			println(GetInstance()) //打印下地址
+			wg.Done()              //计数-1
 		}(i)
 	}
 	//关闭channel，所有协程同时开始运行，实现并行(parallel)
@@ -35,7 +36,8 @@ func TestParallelSingleton(t *testing.T) {
 	wg.Wait() //阻塞等待, 直到WaitGroup,计数器为0, 即等待上面的100个协程执行完毕后
 	//time.Sleep(time.Second * 3)
 	for i := 1; i < parCount; i++ {
-		log.Printf("i=%d", i)
+		log.Printf("i=%d,instance:%p", i, instances[i])
+		//log.Printf("%p", instances[i])
 		if instances[i] != instances[i-1] { //对比相邻的两个单例是否相等
 			t.Fatal("instance is not equal")
 		}

@@ -2,19 +2,15 @@ package state
 
 import "fmt"
 
+//Week 接口,定义了后续每个对象都需要实现的方法
 type Week interface {
 	Today()
 	Next(*DayContext)
 }
 
+//DayContext 定义了当前状态
 type DayContext struct {
 	today Week
-}
-
-func NewDayContext() *DayContext {
-	return &DayContext{
-		today: &Sunday{},
-	}
 }
 
 func (d *DayContext) Today() {
@@ -25,16 +21,27 @@ func (d *DayContext) Next() {
 	d.today.Next(d)
 }
 
-type Sunday struct{}
+//NewDayContext 入口
+func NewDayContext() *DayContext {
+	return &DayContext{
+		today: &Sunday{},
+	}
+}
 
+//Sunday 定义每个状态
+type Sunday struct{} // 这里为什么不继承DayContext?
+
+//Today 当前状态
 func (*Sunday) Today() {
 	fmt.Printf("Sunday\n")
 }
 
+//Next 下个状态
 func (*Sunday) Next(ctx *DayContext) {
 	ctx.today = &Monday{}
 }
 
+//下面都是重复定义每个阶段的状态以及对应的转换
 type Monday struct{}
 
 func (*Monday) Today() {

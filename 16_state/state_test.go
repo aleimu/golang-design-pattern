@@ -20,3 +20,10 @@ func ExampleWeek() {
 	// Saturday
 	// Sunday
 }
+
+func ExampleMonday() {
+	ctx := NewDayContext()
+	var mo Monday
+	mo.Today()
+	mo.Next(ctx)
+}

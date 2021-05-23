@@ -3,7 +3,7 @@
 [ $# -gt 0 ] && {
   commitInfo=$1
 }||{
-  commitInfo='update, ref:https://github.com/ssbandjl/golang-design-pattern'
+  commitInfo='update, ref:https://github.com/aleimu/golang-design-pattern'
 }
 
 git pull
